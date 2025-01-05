@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: module-api
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics
