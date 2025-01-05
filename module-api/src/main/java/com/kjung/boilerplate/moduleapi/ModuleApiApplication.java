@@ -1,13 +1,13 @@
-package com.kjung.springrestboilerplate;
+package com.kjung.boilerplate.moduleapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringRestBoilerplateApplication {
+public class ModuleApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringRestBoilerplateApplication.class, args);
+        SpringApplication.run(ModuleApiApplication.class, args);
     }
 
 }

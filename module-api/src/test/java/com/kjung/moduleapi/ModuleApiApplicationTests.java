@@ -1,10 +1,10 @@
-package com.kjung.springrestboilerplate;
+package com.kjung.moduleapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringRestBoilerplateApplicationTests {
+class ModuleApiApplicationTests {
 
     @Test
     void contextLoads() {
