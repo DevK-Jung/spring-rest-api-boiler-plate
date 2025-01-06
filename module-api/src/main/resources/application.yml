@@ -19,6 +19,7 @@ springdoc:
     tags-sorter: alpha # tag ??? ??
     operations-sorter: method # operation method ??
     info:
+      enabled: true
       title: KJH Rest API
       description: KJH Rest API
       version: 1.0.0
