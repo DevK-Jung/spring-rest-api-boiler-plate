@@ -7,3 +7,25 @@ management:
     web:
       exposure:
         include: health,metrics
+
+springdoc:
+  packages-to-exclude: com.kjung.boilerplate.**.controller
+  paths-to-match: /api/**
+  api-docs:
+    enabled: true # api Docs ???
+  swagger-ui:
+    enabled: true # swagger ui ???
+    path: /swagger-ui.html
+    tags-sorter: alpha # tag ??? ??
+    operations-sorter: method # operation method ??
+    info:
+      title: KJH Rest API
+      description: KJH Rest API
+      version: 1.0.0
+      contact:
+        name: Kim Jung Hyeon
+        email: dev.kjung@gmail.com
+      license:
+        name: Apache 2.0
+        url: https://www.apache.org/licenses/LICENSE-2.0.html
+      jwt-header-enabled: true
