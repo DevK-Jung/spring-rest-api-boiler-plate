@@ -9,24 +9,25 @@ management:
         include: health,metrics
 
 springdoc:
-  packages-to-exclude: com.kjung.boilerplate.**.controller
+  packages-to-scan: com.kjung.boilerplate
   paths-to-match: /api/**
   api-docs:
-    enabled: true # api Docs ???
+    enabled: true # api Docs 활성화 여부
   swagger-ui:
-    enabled: true # swagger ui ???
+    enabled: true # swagger ui 활성화 여부
     path: /swagger-ui.html
-    tags-sorter: alpha # tag ??? ??
-    operations-sorter: method # operation method ??
+    tags-sorter: alpha # tag 활성화 여부
+    operations-sorter: method # operation method 활성화 여부
     info:
-      enabled: true
-      title: KJH Rest API
-      description: KJH Rest API
-      version: 1.0.0
+      enabled: true # info 활성화 여부
+      title: KJH Rest API # title
+      description: KJH Rest API # description
+      version: 1.0.0 # version
       contact:
         name: Kim Jung Hyeon
         email: dev.kjung@gmail.com
       license:
         name: Apache 2.0
         url: https://www.apache.org/licenses/LICENSE-2.0.html
-      jwt-header-enabled: true
+      jwt-header-enabled: true # jwt header 활성화 여부
+
