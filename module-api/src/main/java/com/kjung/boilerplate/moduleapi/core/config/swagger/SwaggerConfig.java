@@ -1,5 +1,8 @@
 package com.kjung.boilerplate.moduleapi.core.config.swagger;
 
+import com.kjung.boilerplate.modulecommon.core.response.ResponseWrapper;
+import com.kjung.boilerplate.modulecommon.core.utils.ResponseUtils;
+import com.kjung.boilerplate.modulecommon.core.vo.ErrorVo;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
@@ -16,8 +19,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-
-import java.util.Map;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
@@ -94,7 +95,16 @@ public class SwaggerConfig {
         }));
     }
 
-    private void addApiResponse(Operation operation, HttpStatus httpStatus) {
+    private void addApiResponse(Operation operation,
+                                HttpStatus httpStatus) {
+
+        ResponseWrapper<ErrorVo> error = ResponseUtils.makeErrorResponse(
+                httpStatus,
+                "errorCode",
+                "message",
+                null,
+                false);
+
         operation
                 .getResponses()
                 .addApiResponse(
@@ -106,7 +116,7 @@ public class SwaggerConfig {
                                                 .addMediaType(
                                                         org.springframework.http.MediaType.APPLICATION_JSON_VALUE,
                                                         new MediaType()
-                                                                .example(Map.of("error", httpStatus.getReasonPhrase())) // todo 에러 DTO 필요
+                                                                .example(error)
                                                 )
                                 )
                 );
