@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public record ResponseWrapper<T>(
         @Schema(description = "HTTP Status Code", example = "OK")
-        HttpStatus statusCode,
+        String statusCode,
 
         @Schema(description = "Numeric HTTP Status", example = "200")
         int status,
@@ -28,7 +28,7 @@ public record ResponseWrapper<T>(
     public static <T> ResponseWrapper<T> withStatus(@NonNull HttpStatus status,
                                                     T data) {
         return new ResponseWrapper<>(
-                status,
+                status.getReasonPhrase(),
                 status.value(),
                 data,
                 LocalDateTime.now(),
