@@ -54,6 +54,11 @@ public class SampleController extends AbstractController {
         sampleService.deleteSample(id);
     }
 
+    @GetMapping("/exception")
+    public void exception() {
+        throw new RuntimeException("exception");
+    }
+
     @Operation(summary = "file upload", description = "file upload")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
