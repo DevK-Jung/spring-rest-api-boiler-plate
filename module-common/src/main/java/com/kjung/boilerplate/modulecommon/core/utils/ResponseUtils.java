@@ -16,8 +16,8 @@ public class ResponseUtils {
 //        ReqContextVo contextVo = ServletReqUtils.getServletRequestContextVo();
 //        respVo.setContextVo(contextVo);
 
-//        String guid = contextVo == null ? null : contextVo.getGuid();
-//        if (guid != null) respVo.setGuid(guid);
+//        String requestId = contextVo == null ? null : contextVo.getGuid();
+//        if (requestId != null) respVo.setGuid(requestId);
 
         return ResponseWrapper.withStatus(httpStatus, body);
     }

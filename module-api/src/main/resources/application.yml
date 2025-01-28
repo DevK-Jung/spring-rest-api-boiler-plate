@@ -33,4 +33,7 @@ springdoc:
         name: Apache 2.0
         url: https://www.apache.org/licenses/LICENSE-2.0.html
       jwt-header-enabled: true # jwt header 활성화 여부
+logging:
+  level:
+    root: debug
 

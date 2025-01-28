@@ -29,7 +29,7 @@ public class SampleController extends AbstractController {
     @GetMapping("/{id}")
     public ResponseWrapper<SampleDto> getSample(@Parameter(name = "id", description = "id", example = "1")
                                                 @PathVariable(name = "id") Long id) {
-        return makeOkResponse(sampleService.getSample(id));
+        return makeResponse(sampleService.getSample(id));
     }
 
     @Operation(summary = "Create", description = "Create")
@@ -44,7 +44,7 @@ public class SampleController extends AbstractController {
     public ResponseWrapper<SampleDto> updateSample(@Parameter(name = "id", description = "id", example = "1")
                                                    @PathVariable(name = "id") Long id,
                                                    @Validated @RequestBody SampleUpdateReqDto param) {
-        return makeOkResponse(sampleService.updateSample(id, param));
+        return makeResponse(sampleService.updateSample(id, param));
     }
 
     @Operation(summary = "Delete", description = "Delete")

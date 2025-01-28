@@ -5,8 +5,12 @@ import org.springframework.http.HttpStatus;
 
 public abstract class AbstractController {
 
-    protected final <T> ResponseWrapper<T> makeOkResponse(T data) {
+    protected final <T> ResponseWrapper<T> makeResponse(T data) {
         return ResponseWrapper.withStatus(HttpStatus.OK, data);
+    }
+
+    protected final <T> ResponseWrapper<T> makeResponse(HttpStatus status, T data) {
+        return ResponseWrapper.withStatus(status, data);
     }
 
     protected final <T> ResponseWrapper<T> makeCreatedResponse(T data) {

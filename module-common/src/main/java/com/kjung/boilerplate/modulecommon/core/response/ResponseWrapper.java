@@ -1,12 +1,15 @@
 package com.kjung.boilerplate.modulecommon.core.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kjung.boilerplate.modulecommon.core.utils.ReqContextUtils;
+import com.kjung.boilerplate.modulecommon.core.utils.UuidUtils;
+import com.kjung.boilerplate.modulecommon.core.vo.ReqContextVo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.NonNull;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public record ResponseWrapper<T>(
         @Schema(description = "HTTP Status Code", example = "OK")
@@ -23,15 +26,24 @@ public record ResponseWrapper<T>(
         LocalDateTime timestamp,
 
         @Schema(description = "Unique identifier for the request", example = "550e8400-e29b-41d4-a716-446655440000")
-        String guid) {
+        String requestId,
+        @JsonIgnore
+        @Schema(hidden = true)
+        ReqContextVo reqContext) {
 
     public static <T> ResponseWrapper<T> withStatus(@NonNull HttpStatus status,
                                                     T data) {
+
+        ReqContextVo reqContext = ReqContextUtils.getReqContext();
+
+        String requestId = reqContext != null ? reqContext.getRequestId() : UuidUtils.generate();
+
         return new ResponseWrapper<>(
                 status.getReasonPhrase(),
                 status.value(),
                 data,
                 LocalDateTime.now(),
-                UUID.randomUUID().toString());
+                requestId,
+                reqContext);
     }
 }
