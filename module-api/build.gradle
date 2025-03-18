@@ -16,3 +16,19 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }
+
+def profile = project.hasProperty("profile") ? project.getProperty("profile") : "local"
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/resources", "src/main/resources-${profile}"]
+        }
+    }
+}
+
+tasks {
+    processResources {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
+}
