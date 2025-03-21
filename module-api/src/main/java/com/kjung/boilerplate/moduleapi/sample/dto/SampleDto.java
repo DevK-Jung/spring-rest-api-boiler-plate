@@ -1,15 +1,20 @@
 package com.kjung.boilerplate.moduleapi.sample.dto;
 
+import com.kjung.boilerplate.moduleapi.core.base.dto.BaseRespDto;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
-@RequiredArgsConstructor
-public class SampleDto {
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class SampleDto extends BaseRespDto {
     @Schema(description = "id", example = "1")
-    private final Long id;
+    private Long id;
     @Schema(description = "이름", example = "sample")
-    private final String name;
+    private String name;
 
 }

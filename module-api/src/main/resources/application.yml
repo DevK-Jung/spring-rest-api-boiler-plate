@@ -35,5 +35,5 @@ springdoc:
       jwt-header-enabled: true # jwt header 활성화 여부
 logging:
   level:
-    root: debug
+    root: info
 

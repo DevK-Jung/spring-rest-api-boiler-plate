@@ -16,6 +16,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Tag(name = "Sample Controller", description = "Sample Controller")
 @RestController
 @RequiredArgsConstructor
@@ -30,6 +32,12 @@ public class SampleController extends AbstractController {
     public ResponseWrapper<SampleDto> getSample(@Parameter(name = "id", description = "id", example = "1")
                                                 @PathVariable(name = "id") Long id) {
         return makeResponse(sampleService.getSample(id));
+    }
+
+    @Operation(summary = "Read list", description = "Read list")
+    @GetMapping
+    public ResponseWrapper<List<SampleDto>> getSamples() {
+        return makeResponse(sampleService.getSamples());
     }
 
     @Operation(summary = "Create", description = "Create")
