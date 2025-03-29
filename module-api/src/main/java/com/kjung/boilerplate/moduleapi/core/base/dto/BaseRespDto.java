@@ -12,7 +12,7 @@ public abstract class BaseRespDto {
 
     @Schema(description = "등록자 ID")
     private String regUserId;
-    @Schema(description = "등록일시")
+    @Schema(description = "등록 일 시")
     private LocalDateTime regDatetime;
     @Schema(description = "등록자 명")
     private String regUserNm;
@@ -20,6 +20,6 @@ public abstract class BaseRespDto {
     private String updaterId;
     @Schema(description = "수정자 명")
     private String updaterNm;
-    @Schema(description = "수정일시")
+    @Schema(description = "수정 일 시")
     private LocalDateTime updateDatetime;
 }

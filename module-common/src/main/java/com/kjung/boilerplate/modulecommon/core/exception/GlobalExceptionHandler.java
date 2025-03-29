@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
     private boolean includeStackTrace;
 
     @ExceptionHandler(Exception.class)
-    public ResponseWrapper<ErrorVo> exception(Exception e) {
+    public ResponseWrapper<ErrorVo> exception(Exception ex) {
         String errorCode = "ERR_01";
         String message = "error message";
 
@@ -25,8 +25,20 @@ public class GlobalExceptionHandler {
                 HttpStatus.INTERNAL_SERVER_ERROR,
                 errorCode,
                 message,
-                e,
+                ex,
                 includeStackTrace
         );
     }
+
+    @ExceptionHandler(BaseException.class)
+    public ResponseWrapper<ErrorVo> handleBaseException(BaseException ex) {
+        return ResponseUtils.makeErrorResponse(
+                ex.getStatus(),
+                ex.getErrorCode(),
+                ex.getMessage(),
+                ex,
+                includeStackTrace
+        );
+    }
+
 }

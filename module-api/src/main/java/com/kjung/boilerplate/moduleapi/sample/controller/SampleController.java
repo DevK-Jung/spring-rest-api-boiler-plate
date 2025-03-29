@@ -1,5 +1,6 @@
 package com.kjung.boilerplate.moduleapi.sample.controller;
 
+import com.kjung.boilerplate.moduleapi.core.exception.CustomException;
 import com.kjung.boilerplate.moduleapi.sample.dto.SampleDto;
 import com.kjung.boilerplate.moduleapi.sample.dto.SampleInsertReqDto;
 import com.kjung.boilerplate.moduleapi.sample.dto.SampleUpdateReqDto;
@@ -67,10 +68,18 @@ public class SampleController extends AbstractController {
         throw new RuntimeException("exception");
     }
 
+
+    @Operation(summary = "Custom Exception 테스트", description = "Custom Exception 테스트")
+    @GetMapping("/custom/exception")
+    public void customException() {
+        throw new CustomException();
+    }
+
     @Operation(summary = "file upload", description = "file upload")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/upload", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public boolean upload(@Parameter(description = "file") final MultipartFile file) {
         return true;
     }
+
 }
