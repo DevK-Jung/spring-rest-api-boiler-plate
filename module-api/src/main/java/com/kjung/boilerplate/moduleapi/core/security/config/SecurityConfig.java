@@ -39,9 +39,13 @@ public class SecurityConfig {
                 .sessionManagement(r -> r.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //세션 사용 안함
 
                 .authorizeHttpRequests(r ->
-                        r.requestMatchers(publicUris).permitAll()
-                                .anyRequest().authenticated()
+                        r.anyRequest().permitAll()
                 );
+
+//                .authorizeHttpRequests(r ->
+//                        r.requestMatchers(publicUris).permitAll()
+//                                .anyRequest().authenticated()
+//                );
 
 
         return http.build();

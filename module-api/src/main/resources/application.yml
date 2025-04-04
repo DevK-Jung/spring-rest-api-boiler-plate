@@ -4,6 +4,8 @@ spring:
   error:
     response:
       include-stack-trace: true # 에러 발생시 응답에 trace 포함 여부
+  messages:
+    basename: message/messages
 
 management:
   endpoints:
