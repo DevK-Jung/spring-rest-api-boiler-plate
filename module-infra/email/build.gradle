@@ -1,0 +1,20 @@
+jar {
+    enabled = true // 일반 JAR 활성화
+}
+bootJar {
+    enabled = false // 실행 가능한 JAR 비활성화
+}
+
+group = 'com.kjung'
+version = '0.0.1-SNAPSHOT'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+    // thymeleaf(for email service)
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
