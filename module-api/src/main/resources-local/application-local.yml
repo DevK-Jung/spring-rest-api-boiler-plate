@@ -1,1 +1,15 @@
 message: local
+
+cors:
+  allowed-origin:
+    http://localhost:3000
+
+security:
+  public-uris:
+    /actuator/**
+    , /configuration/security
+    , /configuration/ui
+    , /swagger-ui/**
+    , /swagger-resources/**
+    , /v3/api-docs/**
+    , /error
