@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: local-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_DATABASE: boilerplate_db
+      MYSQL_USER: devuser
+      MYSQL_PASSWORD: devpass123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - local-network
+
+volumes:
+  mysql_data:
+
+networks:
+  local-network:
+    driver: bridge
