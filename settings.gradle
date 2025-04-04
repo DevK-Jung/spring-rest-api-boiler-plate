@@ -2,3 +2,4 @@ rootProject.name = 'SpringRestBoilerplate'
 
 include 'module-api'
 include 'module-common'
+include 'module-infra:file'
