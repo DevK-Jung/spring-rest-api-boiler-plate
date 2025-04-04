@@ -1,6 +1,6 @@
 package com.kjung.boilerplate.modulecommon.core.interceptor;
 
-import com.kjung.boilerplate.modulecommon.core.constants.RequestAttributeKeys;
+import com.kjung.boilerplate.modulecommon.core.constants.RequestAttributeKey;
 import com.kjung.boilerplate.modulecommon.core.vo.ReqContextVo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,7 +18,7 @@ public class RequestContextInterceptor implements HandlerInterceptor {
 
         ReqContextVo contextVo = ReqContextVo.from(request);
 
-        request.setAttribute(RequestAttributeKeys.REQUEST_CONTEXT.name(), contextVo);
+        request.setAttribute(RequestAttributeKey.REQUEST_CONTEXT.name(), contextVo);
 
         log.debug(">>>>> Request Context: {}", contextVo);
 

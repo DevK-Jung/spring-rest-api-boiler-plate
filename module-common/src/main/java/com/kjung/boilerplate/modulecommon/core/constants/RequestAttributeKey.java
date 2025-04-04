@@ -1,5 +1,5 @@
 package com.kjung.boilerplate.modulecommon.core.constants;
 
-public enum RequestAttributeKeys {
+public enum RequestAttributeKey {
     REQUEST_CONTEXT
 }
