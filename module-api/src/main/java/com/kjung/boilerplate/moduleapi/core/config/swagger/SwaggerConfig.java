@@ -12,6 +12,7 @@ import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.media.Content;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.responses.ApiResponse;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springdoc.core.customizers.OpenApiCustomizer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -36,16 +37,15 @@ public class SwaggerConfig {
 
         // JWT 헤더 추가 여부 확인
         if (Boolean.TRUE.equals(properties.getJwtHeaderEnabled())) {
-            openAPI.components(
-                    new Components()
-                            .addSecuritySchemes(
-                                    HttpHeaders.AUTHORIZATION,
+            openAPI.components(new Components()
+                            .addSecuritySchemes(HttpHeaders.AUTHORIZATION,
                                     new SecurityScheme()
                                             .type(SecurityScheme.Type.HTTP)
                                             .scheme("bearer")
                                             .bearerFormat("JWT")
-                                            .name(HttpHeaders.AUTHORIZATION))
-            );
+                                            .in(SecurityScheme.In.HEADER)
+                                            .name(HttpHeaders.AUTHORIZATION)))
+                    .addSecurityItem(new SecurityRequirement().addList(HttpHeaders.AUTHORIZATION));
         }
 
         return openAPI;
