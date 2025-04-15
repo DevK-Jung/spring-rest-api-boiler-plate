@@ -18,12 +18,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create       # create, create-drop, update, validate, none
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
         dialect: org.hibernate.dialect.MySQL8Dialect
-        highlight_sql: true  # Hibernate 6 이상만
+        highlight_sql: false  # Hibernate 6 이상만
 
 cors:
   allowed-origin:
@@ -38,3 +38,8 @@ security:
     , /swagger-resources/**
     , /v3/api-docs/**
     , /error
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
