@@ -1,5 +1,6 @@
 package com.kjung.boilerplate.moduleapi.core.security.config;
 
+import com.kjung.boilerplate.moduleapi.core.security.AdminOnlyAuthorizationManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +31,8 @@ public class SecurityConfig {
     private String[] publicUris;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                                                   AdminOnlyAuthorizationManager adminOnlyAuthorizationManager) throws Exception {
 
         http.cors(c -> c.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable)
@@ -39,7 +41,10 @@ public class SecurityConfig {
                 .sessionManagement(r -> r.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //세션 사용 안함
 
                 .authorizeHttpRequests(r ->
-                        r.anyRequest().permitAll()
+                        r.requestMatchers(POST, "/api/*/system/**").access(adminOnlyAuthorizationManager)
+                                .requestMatchers(PUT, "/api/*/system/**").access(adminOnlyAuthorizationManager)
+                                .requestMatchers(DELETE, "/api/*/system/**").access(adminOnlyAuthorizationManager)
+                                .anyRequest().permitAll()
                 );
 
 //                .authorizeHttpRequests(r ->
