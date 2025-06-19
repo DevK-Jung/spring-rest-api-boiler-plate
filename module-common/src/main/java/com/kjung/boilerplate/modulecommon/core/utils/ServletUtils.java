@@ -10,10 +10,14 @@ public class ServletUtils {
     public HttpServletRequest getServletRequest() {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 
+        if (attributes == null) return null;
+
         return attributes.getRequest();
     }
 
     public String getRequestURI() {
-        return getServletRequest().getRequestURI();
+        HttpServletRequest request = getServletRequest();
+
+        return request == null ? null : request.getRequestURI();
     }
 }
