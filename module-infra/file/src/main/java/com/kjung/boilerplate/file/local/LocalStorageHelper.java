@@ -53,6 +53,16 @@ public class LocalStorageHelper implements StorageHelper {
     }
 
     @Override
+    public InputStream getFileStream(String filePath, String fileName) {
+        try {
+            return Files.newInputStream(Paths.get(filePath, fileName));
+        } catch (IOException e) {
+            log.error(">>> 파일 스트림 열기 에러: {}", e.getMessage());
+            throw new RuntimeException("파일 스트림 열기 실패", e);
+        }
+    }
+
+    @Override
     public void deleteFile(String filePath, String fileName) {
         Path fileLocation = Paths.get(filePath, fileName).toAbsolutePath();
 
